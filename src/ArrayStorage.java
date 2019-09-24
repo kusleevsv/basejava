@@ -5,26 +5,52 @@ public class ArrayStorage {
     Resume[] storage = new Resume[10000];
 
     void clear() {
+        for (int i = 0; i < size(); i++) {
+            storage[i] = null;
+        }
     }
 
     void save(Resume r) {
+        for (int i = 0; i < size(); i++) {
+            if (storage[i] == null) {
+                storage[i] = r;
+            }
+        }
     }
 
     Resume get(String uuid) {
+        for (int i = 0; i < size(); i++) {
+            if (storage[i].uuid.equals(uuid)) {
+                return storage[i];
+            }
+        }
         return null;
     }
 
     void delete(String uuid) {
+        for (int i = 0; i < size(); i++) {
+            if (storage[i].uuid.equals(uuid)) {
+                storage[i] = null;
+            }
+        }
     }
 
     /**
      * @return array, contains only Resumes in storage (without null)
      */
     Resume[] getAll() {
-        return new Resume[0];
+        Resume[] withoutHoles = new Resume[size()];
+        int j = 0;
+        for (int i = 0; i < size(); i++) {
+            if (storage[i] != null) {
+                withoutHoles[j] = storage[i];
+                j++;
+            }
+        }
+        return withoutHoles;
     }
 
     int size() {
-        return 0;
+        return storage.length;
     }
 }
