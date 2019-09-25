@@ -10,10 +10,10 @@ public class ArrayStorage {
         }
     }
 
-    void save(Resume r) {
+    void save(Resume resume) {
         for (int i = 0; i < size(); i++) {
             if (storage[i] == null) {
-                storage[i] = r;
+                storage[i] = resume;
             }
         }
     }
