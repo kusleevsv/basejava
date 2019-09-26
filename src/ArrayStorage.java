@@ -2,14 +2,11 @@
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    private Resume[] storage = new Resume[10000];
+    private Resume[] storage = new Resume[3];
     private int size = 0;
 
-    public ArrayStorage() {
-    }
-
     void clear() {
-        for (int i = 0; i < storage.length; i++) {
+        for (int i = 0; i < size - 1; i++) {
             storage[i] = null;
         }
         size = 0;
@@ -17,37 +14,35 @@ public class ArrayStorage {
 
     void save(Resume resume) {
         if (resume != null && resume.uuid != null && size < storage.length) {
-            Integer idx = searchByUuid(resume.uuid);
-            if (idx != null) {
-                storage[idx] = resume;
-            } else {
+            int idx = searchByUuid(resume.uuid);
+            if (idx == -1) {
                 storage[size] = resume;
                 size++;
             }
         }
     }
 
-    private Integer searchByUuid(String uuid) {
+    private int searchByUuid(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(uuid)) {
                 return i;
             }
         }
-        return null;
+        return -1;
     }
 
     Resume get(String uuid) {
-        Integer idx = searchByUuid(uuid);
-        if (idx != null) {
+        int idx = searchByUuid(uuid);
+        if (idx != -1) {
             return storage[idx];
         }
         return null;
     }
 
     void delete(String uuid) {
-        Integer idx = searchByUuid(uuid);
-        if (idx != null) {
-            for (int i = idx; i < size; i++) {
+        int idx = searchByUuid(uuid);
+        if (idx != -1) {
+            for (int i = idx; i < size - 1; i++) {
                 storage[i] = storage[i + 1];
             }
             size--;
