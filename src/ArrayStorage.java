@@ -17,30 +17,40 @@ public class ArrayStorage {
 
     void save(Resume resume) {
         if (resume != null && resume.uuid != null && size < storage.length) {
-            if (get(resume.uuid) == null) {
+            Integer idx = searchByUuid(resume.uuid);
+            if (idx != null) {
+                storage[idx] = resume;
+            } else {
                 storage[size] = resume;
                 size++;
             }
         }
     }
 
-    Resume get(String uuid) {
+    private Integer searchByUuid(String uuid) {
         for (int i = 0; i < size; i++) {
             if (storage[i].uuid.equals(uuid)) {
-                return storage[i];
+                return i;
             }
         }
         return null;
     }
 
+    Resume get(String uuid) {
+        Integer idx = searchByUuid(uuid);
+        if (idx != null) {
+            return storage[idx];
+        }
+        return null;
+    }
+
     void delete(String uuid) {
-        for (int i = 0; i < size; i++) {
-            if (storage[i].uuid.equals(uuid)) {
-                storage[i] = null;
-                size--;
-                storage = this.getAll();
-                break;
+        Integer idx = searchByUuid(uuid);
+        if (idx != null) {
+            for (int i = idx; i < size; i++) {
+                storage[i] = storage[i + 1];
             }
+            size--;
         }
     }
 
