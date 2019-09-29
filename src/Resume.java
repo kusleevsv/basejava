@@ -2,6 +2,11 @@
  * Initial resume class
  */
 public class Resume {
+    Resume() {}
+
+    Resume(String uuid) {
+        this.uuid = uuid;
+    }
 
     // Unique identifier
     String uuid;

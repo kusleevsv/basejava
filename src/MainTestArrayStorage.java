@@ -15,6 +15,7 @@ public class MainTestArrayStorage {
         ARRAY_STORAGE.save(r1);
         ARRAY_STORAGE.save(r2);
         ARRAY_STORAGE.save(r3);
+        ARRAY_STORAGE.save(r3);
 
         System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.uuid));
         System.out.println("Size: " + ARRAY_STORAGE.getSize());
@@ -22,6 +23,10 @@ public class MainTestArrayStorage {
         System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
 
         printAll();
+        System.out.println("Before update uuid3. HashCode: " + ARRAY_STORAGE.get(r3.uuid).hashCode() );
+        r3 = new Resume("uuid3");
+        ARRAY_STORAGE.update(r3);
+        System.out.println("After update uuid3. HashCode: " + ARRAY_STORAGE.get(r3.uuid).hashCode() );
         ARRAY_STORAGE.delete(r1.uuid);
         printAll();
         ARRAY_STORAGE.clear();
