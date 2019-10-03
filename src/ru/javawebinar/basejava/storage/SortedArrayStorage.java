@@ -4,36 +4,48 @@ import ru.javawebinar.basejava.model.Resume;
 
 import java.util.Arrays;
 
-public class SortedArrayStorage extends AbstractArrayStorage{
+public class SortedArrayStorage extends AbstractArrayStorage {
+
     @Override
     public void clear() {
-
-    }
-
-    @Override
-    public void update(Resume r) {
-
-    }
-
-    @Override
-    public void save(Resume r) {
-
-    }
-
-    @Override
-    public void delete(String uuid) {
-
+        Arrays.fill( storage, 0, size, null );
+        size = 0;
     }
 
     @Override
     public Resume[] getAll() {
-        return new Resume[0];
+        return Arrays.copyOf( storage, size );
     }
 
     @Override
-    protected int getIndex(String uuid) {
-        Resume searchKey = new Resume();
-        searchKey.setUuid(uuid);
-        return Arrays.binarySearch(storage, 0, size, searchKey);
+    protected int getIndex( Resume resume ) {
+        return Arrays.binarySearch( storage, 0, size, resume );
+    }
+
+    @Override
+    protected void addResume( Resume resume ) {
+        if( size < 1 ) {
+            storage[ 0 ] = resume;
+        }
+
+        for( int i = 0 ; i < size ; i++ ) {
+            if( storage[ i ].compareTo( resume ) > 0 ) {
+
+            }
+        }
+    }
+
+    @Override
+    protected void updateByIndex( Resume resume, int index ) {
+        storage[ index ] = resume;
+    }
+
+    @Override
+    protected void deleteByIndex( int index ) {
+        for( int i = index ; i < size - 1 ; i++ ) {
+            storage[ i ] = storage[ i + 1 ];
+        }
+        storage[ size ] = null;
+        size--;
     }
 }

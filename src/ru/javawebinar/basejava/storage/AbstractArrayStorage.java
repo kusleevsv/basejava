@@ -15,8 +15,41 @@ public abstract class AbstractArrayStorage implements Storage {
         return size;
     }
 
+    public void update(Resume resume) {
+        if (!checkResume(resume)) {
+            return;
+        }
+        int index = getIndex( resume );
+
+        if( index == -1 ) {
+            System.out.println( "Resume " + resume.getUuid() + " not exist" );
+        }
+
+        updateByIndex(resume, index);
+    }
+
+    public void save(Resume resume) {
+        if (!checkResume(resume)) {
+            return;
+        }
+
+        if (size >= STORAGE_LIMIT) {
+            System.out.println("Error: failed to save resume. No free space in storage.");
+            return;
+        }
+
+        int index = getIndex( resume );
+
+        if (index > 0) {
+            System.out.println("Error: failed to save resume. Resume with uuid: " + resume.getUuid() + " already exists.");
+            return;
+        }
+
+        addResume( resume );
+    }
+
     public Resume get(String uuid) {
-        int index = getIndex(uuid);
+        int index = getIndex(new Resume( uuid ));
         if (index == -1) {
             System.out.println("Resume " + uuid + " not exist");
             return null;
@@ -24,5 +57,36 @@ public abstract class AbstractArrayStorage implements Storage {
         return storage[index];
     }
 
-    protected abstract int getIndex(String uuid);
+    public void delete(String uuid) {
+        int index = getIndex( new Resume( uuid ) );
+
+        if (index == -1) {
+            System.out.println("Resume " + uuid + " not exist");
+            return;
+        }
+
+        deleteByIndex(index);
+    }
+
+    private boolean checkResume(Resume resume) {
+        if (resume == null) {
+            System.out.println("Error: Resume must not be null.");
+            return false;
+        }
+
+        if (resume.getUuid() == null || resume.getUuid().isEmpty()) {
+            System.out.println("Error: Resume uuid must not be null and must not be empty");
+            return false;
+        }
+
+        return true;
+    }
+
+    protected abstract int getIndex(Resume resume);
+
+    protected abstract void addResume(Resume resume);
+
+    protected abstract void updateByIndex( Resume resume, int index );
+
+    protected abstract void deleteByIndex( int index );
 }
