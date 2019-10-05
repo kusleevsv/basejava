@@ -10,17 +10,6 @@ import java.util.Arrays;
 public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
-    public void clear() {
-        Arrays.fill(storage, 0, size, null);
-        size = 0;
-    }
-
-    @Override
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
-    }
-
-    @Override
     protected int getIndex(Resume resume) {
         for (int i = 0; i < size; i++) {
             if (resume.getUuid().equals(storage[i].getUuid())) {
