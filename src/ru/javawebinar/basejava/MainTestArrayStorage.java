@@ -9,7 +9,7 @@ import ru.javawebinar.basejava.storage.Storage;
  * Test ru.javawebinar.basejava.storage.ArrayStorage
  */
 public class MainTestArrayStorage {
-   private static final Storage ARRAY_STORAGE = new ArrayStorage();
+    private static final Storage ARRAY_STORAGE = new ArrayStorage();
     private static final Storage SORTED_ARRAY_STORAGE = new SortedArrayStorage();
 
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class MainTestArrayStorage {
         runTests(SORTED_ARRAY_STORAGE);
     }
 
-    private static void runTests(Storage storage ) {
+    private static void runTests(Storage storage) {
         System.out.println("------------ START test with: " + storage.getClass() + " ------------------");
         Resume r1 = new Resume("uuid1");
         Resume r2 = new Resume("uuid2");
@@ -37,10 +37,10 @@ public class MainTestArrayStorage {
         System.out.println("Size: " + storage.size());
         System.out.println("Get r1: " + storage.get(r1.getUuid()));
 
-        System.out.println("Before update uuid3. HashCode: " + storage.get(r3.getUuid()).hashCode() );
+        System.out.println("Before update uuid3. HashCode: " + storage.get(r3.getUuid()).hashCode());
         r3 = new Resume(r3.getUuid());
         storage.update(r3);
-        System.out.println("After update uuid3. HashCode: " + storage.get(r3.getUuid()).hashCode() );
+        System.out.println("After update uuid3. HashCode: " + storage.get(r3.getUuid()).hashCode());
 
         System.out.println("Get dummy: " + storage.get("dummy"));
 
@@ -55,7 +55,7 @@ public class MainTestArrayStorage {
         System.out.println(" ");
     }
 
-   private static void printAll(Storage storage) {
+    private static void printAll(Storage storage) {
         System.out.println("\nGet All");
         for (Resume resume : storage.getAll()) {
             System.out.println(resume);

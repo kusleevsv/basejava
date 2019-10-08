@@ -15,7 +15,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     protected void addResume(Resume resume) {
         for (int i = 0; i < size; i++) {
             if (storage[i].compareTo(resume) > 0) {
-                Resume[] tmp = Arrays.copyOfRange(storage, i, size );
+                Resume[] tmp = Arrays.copyOfRange(storage, i, size);
                 storage[i] = resume;
                 System.arraycopy(tmp, 0, storage, i + 1, tmp.length);
                 return;
