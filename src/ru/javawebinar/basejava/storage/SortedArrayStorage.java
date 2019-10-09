@@ -15,9 +15,8 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     protected void addResume(Resume resume) {
         for (int i = 0; i < size; i++) {
             if (storage[i].compareTo(resume) > 0) {
-                Resume[] tmp = Arrays.copyOfRange(storage, i, size);
+                System.arraycopy(storage, i, storage, i + 1, size - i + 1  );
                 storage[i] = resume;
-                System.arraycopy(tmp, 0, storage, i + 1, tmp.length);
                 return;
             }
         }
@@ -25,16 +24,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void updateByIndex(Resume resume, int index) {
-        storage[index] = resume;
-    }
-
-    @Override
     protected void deleteByIndex(int index) {
-        for (int i = index; i < size - 1; i++) {
-            storage[i] = storage[i + 1];
-        }
-        storage[size] = null;
-        size--;
+        System.arraycopy(storage, index + 1, storage, index, size - index - 1);
     }
 }
