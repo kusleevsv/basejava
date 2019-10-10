@@ -12,15 +12,9 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void addResume(Resume resume) {
-        for (int i = 0; i < size; i++) {
-            if (storage[i].compareTo(resume) > 0) {
-                System.arraycopy(storage, i, storage, i + 1, size - i + 1  );
-                storage[i] = resume;
-                return;
-            }
-        }
-        storage[size] = resume;
+    protected void addResume(Resume resume, int index) {
+        System.arraycopy(storage, index, storage, index + 1, size - index + 1);
+        storage[index] = resume;
     }
 
     @Override

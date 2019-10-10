@@ -14,12 +14,12 @@ public class ArrayStorage extends AbstractArrayStorage {
                 return i;
             }
         }
-        return -1;
+        return -(size + 1);
     }
 
     @Override
-    protected void addResume(Resume resume) {
-        storage[size] = resume;
+    protected void addResume(Resume resume, int index) {
+        storage[index] = resume;
     }
 
     @Override

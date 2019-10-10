@@ -58,7 +58,7 @@ public abstract class AbstractArrayStorage implements Storage {
             return;
         }
 
-        addResume(resume);
+        addResume(resume, -(index + 1));
         size++;
     }
 
@@ -100,7 +100,7 @@ public abstract class AbstractArrayStorage implements Storage {
 
     protected abstract int getIndex(Resume resume);
 
-    protected abstract void addResume(Resume resume);
+    protected abstract void addResume(Resume resume, int index);
 
     protected abstract void deleteByIndex(int index);
 }

@@ -13,7 +13,7 @@ public class MainTestArrayStorage {
     private static final Storage SORTED_ARRAY_STORAGE = new SortedArrayStorage();
 
     public static void main(String[] args) {
-        runTests(ARRAY_STORAGE);
+//        runTests(ARRAY_STORAGE);
         runTests(SORTED_ARRAY_STORAGE);
     }
 
@@ -30,6 +30,7 @@ public class MainTestArrayStorage {
         storage.save(r2);
         storage.save(r3);
         storage.save(r5);
+        storage.save(r6);
         storage.save(r6);
         storage.save(r4);
 
