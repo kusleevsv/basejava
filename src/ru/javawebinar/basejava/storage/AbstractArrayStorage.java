@@ -58,7 +58,7 @@ public abstract class AbstractArrayStorage implements Storage {
             return;
         }
 
-        addResume(resume, -(index + 1));
+        addResume(resume, index);
         size++;
     }
 
