@@ -53,7 +53,7 @@ public abstract class AbstractArrayStorageTest {
     @Test(expected = NotExistStorageException.class)
     public void delete_deleteResume_exception() {
         storage.save(RESUME_4);
-        storage.delete(RESUME_4.getUuid());
+        storage.delete(storage.get(RESUME_4.getUuid()).getUuid());
         storage.get(RESUME_4.getUuid());
     }
 
