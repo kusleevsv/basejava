@@ -26,8 +26,9 @@ public abstract class AbstractArrayStorageTest {
     }
 
     @Test
-    public void size_getSizeStorage_3() {
-        Assert.assertEquals(3, storage.size());
+    public void size_getSizeStorage_int3() {
+        storage.save(RESUME_4);
+        Assert.assertEquals(4, storage.size());
     }
 
     @Test
