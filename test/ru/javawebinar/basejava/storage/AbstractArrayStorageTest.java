@@ -12,7 +12,7 @@ public abstract class AbstractArrayStorageTest {
     public final static Resume RESUME_2 = new Resume("uuid2");
     public final static Resume RESUME_3 = new Resume("uuid3");
     public final static Resume RESUME_4 = new Resume("uuid4");
-    private Storage storage;
+    protected Storage storage;
 
     public AbstractArrayStorageTest(Storage storage) {
         this.storage = storage;
